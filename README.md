@@ -2,6 +2,8 @@
 
 # glyphs-reference
 
+[![Site](https://img.shields.io/badge/site-live-87f32e?labelColor=2b372a)](https://erikyin.net/glyphs-reference/) [![License: MIT](https://img.shields.io/badge/license-MIT-2b372a)](LICENSE)
+
 A Claude Code plugin providing 10 Skills covering Glyphs.app documentation: Python/Obj-C API, file format, SDK reference, Vanilla UI, packages, localization, and web search.
 
 > Replaces the legacy [`glyphs-info-mcp`](https://github.com/yintzuyuan/glyphs-info-mcp) MCP server with ~98% lower token usage via Claude's Skills progressive disclosure.

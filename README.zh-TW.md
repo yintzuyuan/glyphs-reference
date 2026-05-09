@@ -2,6 +2,8 @@
 
 # glyphs-reference
 
+[![Site](https://img.shields.io/badge/site-live-87f32e?labelColor=2b372a)](https://erikyin.net/glyphs-reference/) [![License: MIT](https://img.shields.io/badge/license-MIT-2b372a)](LICENSE)
+
 涵蓋 Glyphs.app 文件的 Claude Code plugin，內含 10 個 Skills：Python/Obj-C API、檔案格式、SDK 參考、Vanilla UI、套件管理、在地化、網頁搜尋。
 
 > 取代舊版 [`glyphs-info-mcp`](https://github.com/yintzuyuan/glyphs-info-mcp) MCP server，透過 Claude Skills 的 progressive disclosure 設計，token 使用量降低約 98%。
