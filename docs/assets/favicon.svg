@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    rect { fill: #f4f0e8; }
+    text { fill: #2c2825; font-family: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", serif; font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #1a1816; }
+      text { fill: #e8e2d8; }
+    }
+  </style>
+  <rect width="64" height="64" rx="10"/>
+  <text x="50%" y="50%" font-size="40" text-anchor="middle" dominant-baseline="central">字</text>
+</svg>

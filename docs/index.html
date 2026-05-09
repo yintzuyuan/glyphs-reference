@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+
+  <title>glyphs-reference — Glyphs.app docs as Claude Code Skills</title>
+  <meta name="description" content="A Claude Code plugin that brings the full Glyphs.app documentation into Claude through 10 progressive-disclosure Skills — Python, Obj-C, file format, SDK, and more. ~98% lower token cost than the legacy MCP server.">
+  <meta name="author" content="TzuYuan Yin (Erik Yin)">
+  <meta name="keywords" content="Glyphs, font design, Claude Code, plugin, Skills, MCP, Python API, Obj-C, font format">
+
+  <link rel="canonical" href="https://yintzuyuan.github.io/glyphs-reference/">
+  <link rel="alternate" hreflang="en" href="https://yintzuyuan.github.io/glyphs-reference/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://yintzuyuan.github.io/glyphs-reference/">
+
+  <meta property="og:title" content="glyphs-reference — Glyphs.app docs as Claude Code Skills">
+  <meta property="og:description" content="10 Skills covering Glyphs.app Python/Obj-C APIs, file format, SDK, Vanilla UI, and more. ~98% lower token cost than the legacy MCP.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yintzuyuan.github.io/glyphs-reference/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- 防 FOUC：在樣式載入前立即套用主題與語言 -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('gr-theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+
+        var lang = localStorage.getItem('gr-lang') ||
+          ((navigator.language || 'en').toLowerCase().startsWith('zh') ? 'zh' : 'en');
+        document.documentElement.dataset.lang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#" class="site-logo" aria-label="glyphs-reference home">
+        <span class="logo-mark">{字}</span>glyphs-reference
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#why-skills" data-en="Rationale" data-zh="設計取捨">Rationale</a></li>
+          <li><a href="#skills" data-en="Skills" data-zh="技能組">Skills</a></li>
+          <li><a href="#install" data-en="Install" data-zh="安裝">Install</a></li>
+          <li><a href="#migration" data-en="Migration" data-zh="遷移">Migration</a></li>
+          <li><a href="https://github.com/yintzuyuan/glyphs-reference" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+          <button data-lang-set="en" aria-label="Switch to English">EN</button>
+          <span class="divider" aria-hidden="true">|</span>
+          <button data-lang-set="zh" aria-label="切換至繁體中文">繁</button>
+        </div>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+          <i class="ph ph-moon-stars" data-theme-icon="light" aria-hidden="true"></i>
+          <i class="ph ph-sun" data-theme-icon="dark" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="container">
+        <p class="section-label fade-in">
+          <span data-en="Overview · 概覽" data-zh="概覽 · Overview">Overview · 概覽</span>
+        </p>
+        <h1 class="fade-in" data-delay="1"
+            data-en="Glyphs.app docs, callable as Skills."
+            data-zh="把 Glyphs 文件變成 Skills。">
+          Glyphs.app docs, callable as Skills.
+        </h1>
+        <p class="hero-subtitle fade-in" data-delay="2"
+           data-en="A Claude Code plugin providing 10 Skills covering Python, Obj-C, file format, and the SDK — with ~98% lower token cost than the legacy MCP."
+           data-zh="一個 Claude Code 插件。10 個 Skills 涵蓋 Python、Obj-C、檔案格式、SDK，比舊版 MCP 省 ~98% token。">
+          A Claude Code plugin providing 10 Skills covering Python, Obj-C, file format, and the SDK — with ~98% lower token cost than the legacy MCP.
+        </p>
+        <div class="cta-row fade-in" data-delay="3">
+          <a href="#install" class="btn-primary">
+            <span data-en="Quick Start" data-zh="快速開始">Quick Start</span>
+            <i class="ph ph-arrow-down" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/yintzuyuan/glyphs-reference" target="_blank" rel="noopener" class="btn-arrow">
+            <span data-en="View on GitHub" data-zh="到 GitHub 看原始碼">View on GitHub</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="badge-row fade-in" data-delay="3">
+          <span class="badge accent">v1.0.0</span>
+          <span class="badge">MIT</span>
+          <span class="badge">macOS</span>
+          <span class="badge">Claude Code</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY SKILLS -->
+    <section id="why-skills">
+      <div class="container">
+        <p class="section-label">
+          <span data-en="Rationale · 設計取捨" data-zh="設計取捨 · Rationale">Rationale · 設計取捨</span>
+        </p>
+        <p class="big-stat" aria-hidden="true">~98%</p>
+        <p class="big-stat-caption"
+           data-en="fewer tokens loaded per Claude Code session, on average."
+           data-zh="每次 Claude Code 對話平均載入更少 token。">
+          fewer tokens loaded per Claude Code session, on average.
+        </p>
+
+        <div class="compare-grid">
+          <div class="compare-cell">
+            <p class="label" data-en="Loading" data-zh="載入時機">Loading</p>
+            <p class="from" data-en="MCP eager-load" data-zh="MCP 預先載入">MCP eager-load</p>
+            <p class="arrow-down" aria-hidden="true">↓</p>
+            <p class="to" data-en="Skills on-demand" data-zh="Skills 隨用隨取">Skills on-demand</p>
+          </div>
+          <div class="compare-cell">
+            <p class="label" data-en="Tokens upfront" data-zh="預載 token">Tokens upfront</p>
+            <p class="from">~150K tokens</p>
+            <p class="arrow-down" aria-hidden="true">↓</p>
+            <p class="to">~2K tokens</p>
+          </div>
+          <div class="compare-cell">
+            <p class="label" data-en="Cost" data-zh="費用">Cost</p>
+            <p class="from" data-en="Always paid" data-zh="總是付費">Always paid</p>
+            <p class="arrow-down" aria-hidden="true">↓</p>
+            <p class="to" data-en="Pay only when asked" data-zh="實際使用才付">Pay only when asked</p>
+          </div>
+        </div>
+
+        <blockquote>
+          <span data-en="“Loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs.”"
+                data-zh="「將所有工具定義預先載入、並讓中間結果通過 context window，會拖慢 agent 並增加成本。」">
+            “Loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs.”
+          </span>
+          <cite>
+            <a href="https://www.anthropic.com/news/agent-skills" target="_blank" rel="noopener">Anthropic engineering blog</a>
+          </cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- SKILLS GRID -->
+    <section id="skills">
+      <div class="container">
+        <p class="section-label">
+          <span data-en="Skills · 技能組" data-zh="技能組 · Skills">Skills · 技能組</span>
+        </p>
+        <div class="skills-grid">
+          <article class="card">
+            <h3 class="skill-name">glyphs-python-api</h3>
+            <p class="skill-desc"
+               data-en="Python scripting API reference."
+               data-zh="Python 腳本 API 查詢。">Python scripting API reference.</p>
+            <span class="skill-tag">Python</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-objc-headers</h3>
+            <p class="skill-desc"
+               data-en="Objective-C plugin headers."
+               data-zh="Objective-C 外掛 headers 查詢。">Objective-C plugin headers.</p>
+            <span class="skill-tag">Obj-C</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-sdk-reference</h3>
+            <p class="skill-desc"
+               data-en="Plugin SDK reference, templates, and samples."
+               data-zh="外掛 SDK 參考、範例、模板。">Plugin SDK reference, templates, and samples.</p>
+            <span class="skill-tag">SDK</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-vanilla-ui</h3>
+            <p class="skill-desc"
+               data-en="Vanilla UI library used in Glyphs plugin UI."
+               data-zh="Glyphs 外掛 UI 用的 Vanilla 元件庫。">Vanilla UI library used in Glyphs plugin UI.</p>
+            <span class="skill-tag">UI</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-file-format</h3>
+            <p class="skill-desc"
+               data-en=".glyphs / .glyphspackage format specification."
+               data-zh=".glyphs / .glyphspackage 檔案格式規格。">.glyphs / .glyphspackage format specification.</p>
+            <span class="skill-tag">Format</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-light-table</h3>
+            <p class="skill-desc"
+               data-en="Light Table extension API."
+               data-zh="Light Table 擴充 API。">Light Table extension API.</p>
+            <span class="skill-tag">API</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-localization</h3>
+            <p class="skill-desc"
+               data-en="Glyphs localization data and language codes."
+               data-zh="Glyphs 在地化資料與語言代碼。">Glyphs localization data and language codes.</p>
+            <span class="skill-tag">i18n</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-packages</h3>
+            <p class="skill-desc"
+               data-en="Package management workflows."
+               data-zh="套件管理工作流。">Package management workflows.</p>
+            <span class="skill-tag">Packages</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-remote-scripts</h3>
+            <p class="skill-desc"
+               data-en="Remote script API reference."
+               data-zh="遠端腳本 API。">Remote script API reference.</p>
+            <span class="skill-tag">Scripting</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-web-search</h3>
+            <p class="skill-desc"
+               data-en="Glyphs handbook web search."
+               data-zh="Glyphs Handbook 網頁搜尋。">Glyphs handbook web search.</p>
+            <span class="skill-tag">Web</span>
+          </article>
+          <article class="card">
+            <h3 class="skill-name">glyphs-meta-search</h3>
+            <p class="skill-desc"
+               data-en="Cross-skill meta-search agent for unified queries."
+               data-zh="跨 skill 統合查詢的 meta-search agent。">Cross-skill meta-search agent for unified queries.</p>
+            <span class="skill-tag">Agent</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL -->
+    <section id="install">
+      <div class="container">
+        <p class="section-label">
+          <span data-en="Install · 安裝" data-zh="安裝 · Install">Install · 安裝</span>
+        </p>
+        <h2 data-en="Quick Start" data-zh="快速開始">Quick Start</h2>
+        <div class="install-grid">
+          <div class="install-block">
+            <h3 data-en="Direct from this repo (recommended)"
+                data-zh="從本 repo 直接安裝（推薦）">Direct from this repo (recommended)</h3>
+            <p data-en="Clone with submodules to include GlyphsSDK:"
+               data-zh="連同 submodule 一起 clone（含 GlyphsSDK）：">Clone with submodules to include GlyphsSDK:</p>
+            <div class="code-block">
+              <pre><code id="code-clone">git clone --recurse-submodules https://github.com/yintzuyuan/glyphs-reference.git</code></pre>
+              <button class="copy-btn" data-copy-target="code-clone" aria-label="Copy command">Copy</button>
+            </div>
+            <p class="install-note"
+               data-en="Then point Claude Code at the cloned directory as a local plugin source. Skills are auto-discovered — no manual configuration needed."
+               data-zh="再讓 Claude Code 把這個目錄視為本地插件來源即可。Skills 會自動被發現，不需手動設定。">Then point Claude Code at the cloned directory as a local plugin source. Skills are auto-discovered — no manual configuration needed.</p>
+          </div>
+          <div class="install-block">
+            <h3>
+              <span data-en="Via custom marketplace" data-zh="透過自訂插件市場">Via custom marketplace</span>
+              <span class="coming-soon-tag" data-en="Coming soon" data-zh="籌備中">Coming soon</span>
+            </h3>
+            <p data-en="If you maintain a Claude Code plugin marketplace, you can reference this repo as a submodule under your marketplace’s plugins/ directory."
+               data-zh="若你自己維護 Claude Code 插件市場，可把這個 repo 以 submodule 加入你的 marketplace plugins/ 目錄。">If you maintain a Claude Code plugin marketplace, you can reference this repo as a submodule under your marketplace's plugins/ directory.</p>
+            <p class="install-note"
+               data-en="A dedicated public marketplace for this plugin is not yet published; if usage warrants, one may be added later."
+               data-zh="專屬的公開插件市場尚未發布；視使用情況再決定是否設立。">A dedicated public marketplace for this plugin is not yet published; if usage warrants, one may be added later.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MIGRATION -->
+    <section id="migration">
+      <div class="container">
+        <p class="section-label">
+          <span data-en="Migration · 從 MCP 遷移" data-zh="從 MCP 遷移 · Migration">Migration · 從 MCP 遷移</span>
+        </p>
+        <h2 data-en="Coming from glyphs-info-mcp?"
+            data-zh="原本使用 glyphs-info-mcp？">Coming from glyphs-info-mcp?</h2>
+        <p class="hero-subtitle"
+           data-en="The MCP is in maintenance mode. Three steps to switch:"
+           data-zh="舊版 MCP 進入維護模式，三步即可切換：">The MCP is in maintenance mode. Three steps to switch:</p>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-num" aria-hidden="true">01</span>
+            <h3 data-en="Remove the MCP entry" data-zh="移除 MCP 設定">Remove the MCP entry</h3>
+            <p data-en="Remove the glyphs-info-mcp entry from your claude_desktop_config.json (or unset its activation in your environment)."
+               data-zh="從 claude_desktop_config.json 移除 glyphs-info-mcp（或在環境中停用）。">Remove the <code>glyphs-info-mcp</code> entry from your <code>claude_desktop_config.json</code> (or unset its activation in your environment).</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num" aria-hidden="true">02</span>
+            <h3 data-en="Install this plugin" data-zh="安裝本插件">Install this plugin</h3>
+            <p data-en="Follow the Quick Start above. Same data, ~98% lower token usage via Skills progressive disclosure."
+               data-zh="照上方 Quick Start 安裝。資料相同，靠 Skills 漸進式揭露省下 ~98% token。">Follow the Quick Start above. Same data, ~98% lower token usage via Skills progressive disclosure.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num" aria-hidden="true">03</span>
+            <h3 data-en="Done — auto-discovered" data-zh="完成，自動生效">Done — auto-discovered</h3>
+            <p data-en="Skills are picked up automatically by Claude Code. No further configuration needed."
+               data-zh="Claude Code 會自動載入 Skills，不需要其他設定。">Skills are picked up automatically by Claude Code. No further configuration needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section id="requirements">
+      <div class="container">
+        <p class="section-label">
+          <span data-en="Requirements · 環境需求" data-zh="環境需求 · Requirements">Requirements · 環境需求</span>
+        </p>
+        <h2 data-en="What you need" data-zh="你需要什麼">What you need</h2>
+        <ul class="req-list">
+          <li>
+            <i class="ph ph-terminal-window" aria-hidden="true"></i>
+            <span class="req-text">
+              <span data-en="Claude Code installed"
+                    data-zh="已安裝 Claude Code">Claude Code installed</span>
+              <small>docs.claude.com / claude-code</small>
+            </span>
+          </li>
+          <li>
+            <i class="ph ph-apple-logo" aria-hidden="true"></i>
+            <span class="req-text">
+              <span data-en="macOS — for Glyphs.app workflows"
+                    data-zh="macOS — Glyphs.app 開發環境">macOS — for Glyphs.app workflows</span>
+              <small>Glyphs 3 recommended</small>
+            </span>
+          </li>
+          <li>
+            <i class="ph ph-package" aria-hidden="true"></i>
+            <span class="req-text">
+              <span data-en="GlyphsSDK submodule (optional)"
+                    data-zh="GlyphsSDK submodule（選用）">GlyphsSDK submodule (optional)</span>
+              <small>used by glyphs-sdk-reference</small>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="gradient-divider">
+
+    <!-- FOOTER -->
+    <footer class="site-footer" id="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 data-en="Author" data-zh="作者">Author</h4>
+            <p class="author-name">
+              <span data-en="TzuYuan Yin (Erik Yin)" data-zh="殷慈遠 / Erik Yin">TzuYuan Yin (Erik Yin)</span>
+            </p>
+            <p class="author-title">Type Designer &amp; Developer</p>
+            <ul>
+              <li><a href="https://erikyin.net" target="_blank" rel="noopener">erikyin.net</a></li>
+              <li><a href="mailto:yintzuyuan@erikyin.net">yintzuyuan@erikyin.net</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 data-en="Project" data-zh="專案">Project</h4>
+            <ul>
+              <li><a href="https://github.com/yintzuyuan/glyphs-reference" target="_blank" rel="noopener">GitHub Repository</a></li>
+              <li><a href="https://github.com/yintzuyuan/glyphs-reference/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li>
+              <li><a href="https://github.com/yintzuyuan/glyphs-reference/blob/main/LICENSE" target="_blank" rel="noopener">License (MIT)</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 data-en="Support" data-zh="贊助">Support</h4>
+            <ul>
+              <li><a href="https://ko-fi.com/yintzuyuan" target="_blank" rel="noopener">Ko-fi</a></li>
+              <li><a href="https://www.buymeacoffee.com/erikyin" target="_blank" rel="noopener">Buy Me a Coffee</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          Built with Claude Code · MIT © 2026 TzuYuan Yin
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
