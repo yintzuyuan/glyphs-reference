@@ -70,7 +70,7 @@ The original `glyphs-info-mcp` was a stdio MCP server. Every Claude Code session
 
 Skills with progressive disclosure load only what's needed: ~2K tokens of skill descriptions upfront, full content fetched on demand. For typical sessions, this saves about 98% of token budget.
 
-This mirrors the design rationale Anthropic published when introducing Skills: "loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs" ([Anthropic engineering blog](https://www.anthropic.com/news/agent-skills)).
+This mirrors Anthropic's published rationale for progressive disclosure: "loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs" ([Anthropic engineering blog: Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)). Their reference example reports a reduction from 150,000 to 2,000 tokens — about 98.7%.
 
 ## Contributing
 
@@ -83,5 +83,5 @@ MIT — see [LICENSE](LICENSE).
 ## Acknowledgements
 
 - Glyphs SDK by [Schriftgestaltung GbR](https://glyphsapp.com/)
-- Inspired by Anthropic's [Skills design](https://www.anthropic.com/news/agent-skills)
+- Inspired by Anthropic's [progressive disclosure design](https://www.anthropic.com/engineering/code-execution-with-mcp)
 - Built with [Claude Code](https://docs.claude.com/en/docs/claude-code)

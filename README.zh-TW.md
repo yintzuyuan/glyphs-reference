@@ -70,7 +70,7 @@ git submodule update --init --recursive
 
 Skills 的 progressive disclosure 只載入需要的部分：上前 ~2K tokens 是 skill 描述，完整內容按需 fetch。對一般對話來說，這節省約 98% token 預算。
 
-這呼應 Anthropic 在發布 Skills 時的設計理念：「loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs」（[Anthropic engineering blog](https://www.anthropic.com/news/agent-skills)）。
+這呼應 Anthropic 對 progressive disclosure 的論述：「loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs」（[Anthropic engineering blog: Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)）。同篇舉例 token 從 150,000 降到 2,000，約節省 98.7%。
 
 ## 貢獻
 
@@ -83,5 +83,5 @@ MIT — 詳見 [LICENSE](LICENSE)。
 ## 致謝
 
 - Glyphs SDK 由 [Schriftgestaltung GbR](https://glyphsapp.com/) 維護
-- 設計理念受 Anthropic [Skills 設計](https://www.anthropic.com/news/agent-skills) 啟發
+- 設計理念受 Anthropic [progressive disclosure 論述](https://www.anthropic.com/engineering/code-execution-with-mcp) 啟發
 - 用 [Claude Code](https://docs.claude.com/en/docs/claude-code) 建構
