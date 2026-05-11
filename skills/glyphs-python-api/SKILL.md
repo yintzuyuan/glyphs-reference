@@ -86,6 +86,10 @@ User: "How do I access font masters in Python?"
 
 - **Light Table** (Git version control): See the `glyphs-light-table` skill for `lt_*` extensions on GSFont/GSGlyph/GSLayer
 
+## Additional Resources
+
+- **`references/class-index.md`** — Index of all 35 classes grouped by domain (Application / Font / Glyph / Layer-geometry / View / FontInfo / Utility), 16 standalone functions by category, and 133 constants in 12 named groups. Read this first to navigate quickly before running the search scripts.
+
 ## Requirements
 
 - Python 3.10+ (standard library only)

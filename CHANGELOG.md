@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-05-12
+
+### Added
+
+- `plugin.json` — `homepage` field pointing to `https://erikyin.net/glyphs-reference/`.
+- `skills/glyphs-python-api/references/class-index.md` — index of 35 classes (grouped by domain), 16 standalone functions (5 categories), and 133 constants (12 categories).
+- `skills/glyphs-sdk-reference/references/template-catalog.md` — catalog of 7 plugin base classes with method counts, 9 Python Templates, and 6+ Samples; includes method-type classification rules.
+- `skills/glyphs-web-search/references/content-index.md` — domain map for the 4 official web sources, handbook chapter-area overview, custom-parameter groupings (~10 domains), and a query-intent → script routing table.
+
+### Changed
+
+- `agents/glyphs-meta-search.md` — restructured as a **meta-dispatcher**:
+  - `model: sonnet` → `model: inherit`.
+  - `description` expanded to 3 `<example>` blocks with `<commentary>` (including a counter-example showing when *not* to use the agent).
+  - System prompt now leads with a routing matrix (query type → skills to consult) instead of duplicating skill-level search logic.
+  - `$GLYPHS_SDK_PATH` resolution now documents a `${CLAUDE_PLUGIN_ROOT}/GlyphsSDK/` fallback.
+- `skills/glyphs-file-format/SKILL.md` — expanded with worked workflow, v2/v3 migration table, edge cases, and cross-skill matrix (328 → 985 words).
+- `skills/glyphs-light-table/SKILL.md` — added concept tables (`DocumentState` vs `ObjectStatus`, restoration vs version load), two worked workflows, edge cases, and cross-skill matrix (317 → 895 words).
+- `skills/glyphs-objc-headers/SKILL.md` — added "this skill vs. Python skill" decision table, two worked workflows, selector ↔ Python mapping, edge cases, and cross-skill matrix (381 → 935 words).
+- `skills/glyphs-remote-scripts/SKILL.md` — added "remote vs in-Glyphs" decision table, two worked workflows, Obj-C selector translation table, edge cases, and cross-skill matrix (436 → 925 words).
+- `plugin.json` — removed redundant `"agents": "./agents"` (auto-discovery covers this).
+
 ## [1.0.1] - 2026-05-11
 
 ### Changed

@@ -164,3 +164,7 @@ pip install httpx --break-system-packages
 - `glyphsapp.com/learn`
 - `glyphsapp.com/news`
 - `handbook.glyphsapp.com`
+
+## Additional Resources
+
+- **`references/content-index.md`** — Domain map across the 4 web sources, handbook chapter-area overview (drives `search_handbook_toc.py` vs `search_handbook_fulltext.py` choice), custom-parameter groupings (~10 domains), page-size handling thresholds, and a query-intent → script routing table. Read this first to pick the right script for ambiguous queries.
