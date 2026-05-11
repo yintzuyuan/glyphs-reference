@@ -9,12 +9,15 @@ import os
 import sys
 from pathlib import Path
 
-# Relative path from scripts/ to GlyphsSDK
-_RELATIVE_SDK_PATH = Path(__file__).parent.parent.parent.parent.parent.parent / "GlyphsSDK"
+# Candidate relative paths from scripts/_sdk_utils.py to GlyphsSDK.
+# Order: standalone repo layout first, then marketplace-embedded layout.
+_SCRIPTS_DIR = Path(__file__).parent
+_STANDALONE_SDK_PATH = _SCRIPTS_DIR.parent.parent.parent / "GlyphsSDK"
+_MARKETPLACE_SDK_PATH = _SCRIPTS_DIR.parent.parent.parent.parent.parent / "GlyphsSDK"
 
 
 def get_sdk_path() -> Path:
-    """Resolve GlyphsSDK path: GLYPHS_SDK_PATH env var > relative path."""
+    """Resolve GlyphsSDK path: GLYPHS_SDK_PATH env var > relative paths."""
     env_path = os.environ.get("GLYPHS_SDK_PATH")
     if env_path:
         path = Path(env_path)
@@ -22,8 +25,9 @@ def get_sdk_path() -> Path:
             raise FileNotFoundError(f"GlyphsSDK not found at: {path}")
         return path
 
-    if _RELATIVE_SDK_PATH.is_dir():
-        return _RELATIVE_SDK_PATH
+    for candidate in (_STANDALONE_SDK_PATH, _MARKETPLACE_SDK_PATH):
+        if candidate.is_dir():
+            return candidate
 
     raise FileNotFoundError(
         "GlyphsSDK not found. Set GLYPHS_SDK_PATH or ensure the submodule is cloned."

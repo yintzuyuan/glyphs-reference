@@ -27,6 +27,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skills/glyphs-remote-scripts/SKILL.md` — added "remote vs in-Glyphs" decision table, two worked workflows, Obj-C selector translation table, edge cases, and cross-skill matrix (436 → 925 words).
 - `plugin.json` — removed redundant `"agents": "./agents"` (auto-discovery covers this).
 
+### Fixed
+
+- `skills/glyphs-sdk-reference/scripts/_sdk_utils.py` — relative-path SDK resolution now checks both the standalone-repo layout (`<repo>/GlyphsSDK/`) and the marketplace-embedded layout. Previously only the embedded layout resolved, causing failures in standalone clones when `GLYPHS_SDK_PATH` was unset.
+- `skills/glyphs-sdk-reference/tests/test_list_templates.py` — sample-count assertions are now forward-compatible (`>= 6`) so upstream additions to the GlyphsSDK `Python Samples/` directory no longer break the suite.
+
 ## [1.0.1] - 2026-05-11
 
 ### Changed

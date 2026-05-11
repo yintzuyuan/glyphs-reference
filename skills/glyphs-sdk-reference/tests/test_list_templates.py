@@ -5,7 +5,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
 
 import list_templates
 
@@ -31,10 +30,11 @@ class TestListAllEntries:
         templates = [e for e in result if e["type"] == "template"]
         assert len(templates) == 9
 
-    def test_six_samples(self, env_sdk_path):
+    def test_samples_present(self, env_sdk_path):
+        """At least 6 samples are present (upstream submodule may add more)."""
         result = list_templates.list_all()
         samples = [e for e in result if e["type"] == "sample"]
-        assert len(samples) == 6
+        assert len(samples) >= 6
 
 
 class TestEntryFields:
@@ -79,7 +79,9 @@ class TestTemplateDetails:
         """File Format has two variants: vanilla and xib dialog."""
         result = list_templates.list_all()
         templates = [e for e in result if e["type"] == "template"]
-        file_formats = [t for t in templates if "fileformat" in t["plugin_type"].lower()]
+        file_formats = [
+            t for t in templates if "fileformat" in t["plugin_type"].lower()
+        ]
         assert len(file_formats) == 2
 
     def test_template_has_variant_info(self, env_sdk_path):
@@ -124,7 +126,7 @@ class TestFilterByType:
     def test_filter_samples_only(self, env_sdk_path):
         result = list_templates.list_by_type("sample")
         assert all(e["type"] == "sample" for e in result)
-        assert len(result) == 6
+        assert len(result) >= 6
 
 
 class TestCLI:
@@ -133,18 +135,31 @@ class TestCLI:
     def test_cli_list_all(self, env_sdk_path):
         result = subprocess.run(
             [sys.executable, str(SCRIPTS_DIR / "list_templates.py")],
-            capture_output=True, text=True,
-            env={**dict(__import__("os").environ), "GLYPHS_SDK_PATH": str(env_sdk_path)},
+            capture_output=True,
+            text=True,
+            env={
+                **dict(__import__("os").environ),
+                "GLYPHS_SDK_PATH": str(env_sdk_path),
+            },
         )
         assert result.returncode == 0
         data = json.loads(result.stdout)
-        assert len(data) == 15  # 9 templates + 6 samples
+        assert len(data) >= 15  # 9 templates + 6+ samples
 
     def test_cli_type_template(self, env_sdk_path):
         result = subprocess.run(
-            [sys.executable, str(SCRIPTS_DIR / "list_templates.py"), "--type", "template"],
-            capture_output=True, text=True,
-            env={**dict(__import__("os").environ), "GLYPHS_SDK_PATH": str(env_sdk_path)},
+            [
+                sys.executable,
+                str(SCRIPTS_DIR / "list_templates.py"),
+                "--type",
+                "template",
+            ],
+            capture_output=True,
+            text=True,
+            env={
+                **dict(__import__("os").environ),
+                "GLYPHS_SDK_PATH": str(env_sdk_path),
+            },
         )
         assert result.returncode == 0
         data = json.loads(result.stdout)
@@ -152,10 +167,19 @@ class TestCLI:
 
     def test_cli_type_sample(self, env_sdk_path):
         result = subprocess.run(
-            [sys.executable, str(SCRIPTS_DIR / "list_templates.py"), "--type", "sample"],
-            capture_output=True, text=True,
-            env={**dict(__import__("os").environ), "GLYPHS_SDK_PATH": str(env_sdk_path)},
+            [
+                sys.executable,
+                str(SCRIPTS_DIR / "list_templates.py"),
+                "--type",
+                "sample",
+            ],
+            capture_output=True,
+            text=True,
+            env={
+                **dict(__import__("os").environ),
+                "GLYPHS_SDK_PATH": str(env_sdk_path),
+            },
         )
         assert result.returncode == 0
         data = json.loads(result.stdout)
-        assert len(data) == 6
+        assert len(data) >= 6
