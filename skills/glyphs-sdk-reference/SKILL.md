@@ -115,6 +115,10 @@ User: "How do I implement a Reporter plugin?"
 | Plugin With Window | General bundle |
 | Smiley Panel Plugin | Palette bundle |
 
+## Additional Resources
+
+- **`references/template-catalog.md`** — Catalog of the 7 plugin base classes (with method counts), 9 Python Templates with variants, and the 6+ working samples. Includes method-type classification rules (`protocol` / `python_helper` / `python_wrapped`) and cross-references to companion skills. Read this first to pick the right base class.
+
 ## Requirements
 
 - Python 3.10+ (standard library only)
