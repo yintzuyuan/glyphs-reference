@@ -11,7 +11,7 @@
 # Examples:
 #   ./translate-term.sh "取消"                    # → Cancel (zh-Hant → en)
 #   ./translate-term.sh "Cancel" "zh-Hant"        # → 取消 (en → zh-Hant)
-#   ./translate-term.sh "移除重疊" "ja"           # → 日文 (zh-Hant → en → ja)
+#   ./translate-term.sh "移除重疊" "ja"           # → Japanese (zh-Hant → en → ja)
 
 set -euo pipefail
 

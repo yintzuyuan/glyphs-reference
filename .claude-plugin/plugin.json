@@ -1,7 +1,7 @@
 {
   "name": "glyphs-reference",
-  "version": "1.0.0",
-  "description": "Glyphs.app 萃取技能與知識庫：Python/Obj-C API 查詢、檔案格式、SDK 文件、UI 元件、套件管理、在地化、網頁搜尋",
+  "version": "1.0.1",
+  "description": "Glyphs.app skills and knowledge base: Python/Obj-C API lookup, file format, SDK reference, UI components, package management, localization, and web search.",
   "author": {
     "name": "TzuYuan Yin",
     "email": "yintzuyuan@erikyin.net"

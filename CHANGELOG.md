@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-05-XX
+## [1.0.1] - 2026-05-11
+
+### Changed
+
+- Translated remaining Chinese content to English for the public release:
+  - `agents/glyphs-meta-search.md` — full agent system prompt translated.
+  - `.claude-plugin/plugin.json` — `description` field translated.
+  - `skills/glyphs-objc-headers/references/header-categories.md` — category guide translated.
+  - `skills/glyphs-vanilla-ui/references/component-categories.md` — component guide translated.
+  - `skills/glyphs-packages/references/repository-guide.md` — repository structure guide translated.
+  - `skills/glyphs-localization/scripts/translate-term.sh` — usage comment translated.
+- Preserved intentional Chinese: `README.zh-TW.md`, bilingual `docs/` landing page, Unicode test fixtures, native language names in `language-codes.md`, and the localization skill's own translation examples.
+
+## [1.0.0] - 2026-05-09
 
 ### Added
 
