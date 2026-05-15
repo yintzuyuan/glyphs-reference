@@ -61,35 +61,6 @@
     targets.forEach(function (el) { observer.observe(el); });
   }
 
-  /* --------- 卡片進場（每個 section 內部 stagger） --------- */
-  function setupCardStagger() {
-    const groups = ['.skills-grid', '.compare-grid', '.steps-grid', '.req-list'];
-    groups.forEach(function (selector) {
-      const grid = document.querySelector(selector);
-      if (!grid) return;
-      const items = grid.children;
-      if (!('IntersectionObserver' in window)) {
-        Array.from(items).forEach(function (it) { it.classList.add('visible'); });
-        return;
-      }
-      const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            const idx = Array.prototype.indexOf.call(grid.children, entry.target);
-            entry.target.style.transitionDelay = (idx * 60) + 'ms';
-            entry.target.classList.add('fade-in', 'visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-      Array.from(items).forEach(function (it) {
-        it.classList.add('fade-in');
-        observer.observe(it);
-      });
-    });
-  }
-
   /* --------- 程式碼 copy 按鈕 --------- */
   function setupCopyButtons() {
     document.querySelectorAll('.copy-btn').forEach(function (btn) {
@@ -154,7 +125,6 @@
     setupThemeToggle();
     setupHeaderScroll();
     setupFadeIn();
-    setupCardStagger();
     setupCopyButtons();
   }
 
