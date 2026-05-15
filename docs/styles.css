@@ -25,7 +25,9 @@
   --shadow-md: 0 4px 12px rgba(44, 40, 37, 0.08);
   --shadow-hover: 0 8px 24px rgba(176, 154, 133, 0.18);
 
-  --font-serif: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", serif;
+  /* Latin Noto fronts the stack so Western punctuation resolves to Latin glyphs;
+     Noto Serif TC handles CJK glyphs as fallback. */
+  --font-serif: "Noto Serif", "Noto Serif TC", "Source Han Serif TC", "PMingLiU", serif;
   --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
 
   --space-xs: 0.5rem;
